@@ -1,0 +1,29 @@
+<div class="container">
+    <h1 class="mt-3">Category List</h1>
+    <div class="d-flex justify-content-end mt-3">
+        <button type="button" (click)="onClickEditCategories()" class="btn btn-outline-warning mx-2"><i class="fa-solid fa-pen-to-square"></i>Edit Category</button>
+        <button type="button" class="btn btn btn-outline-danger mx-2" (click)="onDelete()"><i class="fa-solid fa-trash-can"></i> Delete Category</button>
+        <a [routerLink]="['/admin/categories/add']" class="btn btn-outline-primary"> <i class="fa fa-add"></i>Add Category</a>
+    </div>
+
+    <ng-container *ngIf="categories">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th style="text-align: center;"><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Url Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories;let i=index;" (click)="onClickRow(category.id)" [class.active]="category.id == HighlightRow">
+                    <td style="text-align: center;"><input type="checkbox" value="{{category.id}}" [(ngModel)]="categories[i].checked"></td>
+                    <td>{{category.id}}</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.urlHandle}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>

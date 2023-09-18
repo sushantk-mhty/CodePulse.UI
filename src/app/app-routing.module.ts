@@ -1,7 +1,60 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryListComponent } from './features/category/components/category-list/category-list.component';
+import { AddCategoryComponent } from './features/category/components/add-category/add-category.component';
+import { EditCategoryComponent } from './features/category/components/edit-category/edit-category.component';
+import { BlogpostListComponent } from './features/blog-post/components/blogpost-list/blogpost-list.component';
+import { AddBlogpostComponent } from './features/blog-post/components/add-blogpost/add-blogpost.component';
+import { EditBlogpostComponent } from './features/blog-post/components/edit-blogpost/edit-blogpost.component';
+import { HomeComponent } from './features/public/components/home/home.component';
+import { BlogDetailsComponent } from './features/public/components/blog-details/blog-details.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { authGuard } from './features/auth/guards/auth.guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent
+  },
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path:'blog/:url',
+    component:BlogDetailsComponent
+  },
+  {
+    path:'admin/categories',
+    component:CategoryListComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'admin/categories/add',
+    component:AddCategoryComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'admin/categories/:id',
+    component:EditCategoryComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'admin/blogposts',
+    component:BlogpostListComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'admin/blogposts/add',
+    component:AddBlogpostComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:'admin/blogposts/:id',
+    component:EditBlogpostComponent,
+    canActivate:[authGuard]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
