@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, provideRouter, withComponentInputBinding } from '@angular/router';
 import { CategoryListComponent } from './features/category/components/category-list/category-list.component';
 import { AddCategoryComponent } from './features/category/components/add-category/add-category.component';
 import { EditCategoryComponent } from './features/category/components/edit-category/edit-category.component';
@@ -58,6 +58,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[
+    provideRouter(routes,withComponentInputBinding())
+  ]
 })
 export class AppRoutingModule { }

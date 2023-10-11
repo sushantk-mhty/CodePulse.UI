@@ -9,7 +9,7 @@ import { AddCategoryComponent } from './features/category/components/add-categor
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EditCategoryComponent } from './features/category/components/edit-category/edit-category.component';
-import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BlogpostListComponent } from './features/blog-post/components/blogpost-list/blogpost-list.component';
 import { AddBlogpostComponent } from './features/blog-post/components/add-blogpost/add-blogpost.component';
 import { MarkdownModule } from 'ngx-markdown';
@@ -20,6 +20,7 @@ import { BlogDetailsComponent } from './features/public/components/blog-details/
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { CachingInterceptor } from './core/interceptors/caching.interceptor';
+import { HttperrorInterceptor } from './core/interceptors/httperror.interceptor';
 
 
 @NgModule({
@@ -79,6 +80,11 @@ import { CachingInterceptor } from './core/interceptors/caching.interceptor';
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttperrorInterceptor,
       multi:true
     },
     {
