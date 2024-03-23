@@ -21,6 +21,8 @@ import { LoginComponent } from './features/auth/components/login/login.component
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { CachingInterceptor } from './core/interceptors/caching.interceptor';
 import { HttperrorInterceptor } from './core/interceptors/httperror.interceptor';
+import { ScrollToTopDirective } from './shared/directives/scroll-to-top.directive';
+import { UsingFormGroupComponent } from './core/components/using-form-group/using-form-group.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { HttperrorInterceptor } from './core/interceptors/httperror.interceptor'
     ImageSelectorComponent,
     HomeComponent,
     BlogDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    ScrollToTopDirective,
+    UsingFormGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -87,11 +91,11 @@ import { HttperrorInterceptor } from './core/interceptors/httperror.interceptor'
       useClass:HttperrorInterceptor,
       multi:true
     },
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:CachingInterceptor,
-      multi:true
-    }
+    // {
+    //   provide:HTTP_INTERCEPTORS,
+    //   useClass:CachingInterceptor,
+    //   multi:true
+    // }
   ],
   bootstrap: [AppComponent]
 })
